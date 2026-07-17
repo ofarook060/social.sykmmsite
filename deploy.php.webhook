@@ -1,0 +1,18 @@
+<?php
+// Set the path to your cPanel repository folder
+$repo_path = '/home/krnlaaobhw/social.sykmm.site';
+
+// Change directory to the repository and pull the latest code from master
+exec("cd {$repo_path} && git pull origin master 2>&1", $output, $return_var);
+
+// Optional: Log the output to a text file for troubleshooting
+file_put_contents('deploy_log.txt', implode("\n", $output));
+
+if ($return_var === 0) {
+    echo "Deployment successful!";
+} else {
+    header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
+    echo "Deployment failed. Check deploy_log.txt";
+}
+?>
+
