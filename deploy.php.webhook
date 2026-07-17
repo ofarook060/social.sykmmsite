@@ -16,3 +16,19 @@ if ($return_var === 0) {
 }
 ?>
 
+***** .htaccess ***
+
+RewriteEngine On
+
+#ript
+Rew .* - [L]%{REQUE{REQUEST
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
