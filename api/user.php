@@ -12,6 +12,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/connect.php';
 require_once __DIR__ . '/../classes/user.php';
 require_once __DIR__ . '/../classes/login.php';
+require_once __DIR__ . '/../classes/functions.php';
 require_once __DIR__ . '/../classes/jwt.php';
 
 session_start();
@@ -46,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $following = $user->get_following($user_data['userid'], 'user');
         echo json_encode(['success' => true, 'following' => $following]);
     } else {
+        unset($user_data['password']);
         echo json_encode(['success' => true, 'user' => $user_data]);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {

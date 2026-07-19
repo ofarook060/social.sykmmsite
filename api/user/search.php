@@ -22,8 +22,8 @@ if (empty($find)) {
 $find = addslashes($find);
 $DB = new Database();
 
-$users = $DB->read("select * from users where type = 'profile' && (first_name like '%$find%' || last_name like '%$find%') limit 20");
-$groups = $DB->read("select * from users where type = 'group' && first_name like '%$find%' limit 20");
+$users = $DB->read("select userid, first_name, last_name, profile_image, cover_image, tag_name, type, online, about, likes from users where type = 'profile' && (first_name like '%$find%' || last_name like '%$find%') limit 20");
+$groups = $DB->read("select userid, first_name, profile_image, cover_image, tag_name, type, group_type, about, likes from users where type = 'group' && first_name like '%$find%' limit 20");
 
 echo json_encode([
     'success' => true,

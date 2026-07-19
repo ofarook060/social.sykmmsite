@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $profile_data = $user->get_data($user_id);
     
     if ($profile_data) {
+        unset($profile_data['password']);
         echo json_encode(['success' => true, 'user' => $profile_data]);
     } else {
         echo json_encode(['success' => false, 'error' => 'User not found']);
