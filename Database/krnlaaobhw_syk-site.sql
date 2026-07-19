@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 22, 2021 at 12:06 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Host: localhost:3306
+-- Generation Time: Jul 19, 2026 at 03:29 AM
+-- Server version: 11.4.12-MariaDB-cll-lve
+-- PHP Version: 8.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mybook_db`
+-- Database: `krnlaaobhw_syk-site`
 --
 
 -- --------------------------------------------------------
@@ -33,9 +32,9 @@ CREATE TABLE `content_i_follow` (
   `userid` bigint(20) NOT NULL,
   `contentid` bigint(20) NOT NULL,
   `content_type` varchar(10) NOT NULL,
-  `disabled` tinyint(1) NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) NOT NULL DEFAULT 0,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -47,9 +46,9 @@ CREATE TABLE `group_invites` (
   `id` bigint(20) NOT NULL,
   `groupid` bigint(20) NOT NULL,
   `userid` bigint(20) NOT NULL,
-  `disabled` tinyint(1) NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) NOT NULL DEFAULT 0,
   `inviter` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -62,8 +61,8 @@ CREATE TABLE `group_members` (
   `userid` bigint(20) NOT NULL,
   `groupid` bigint(20) NOT NULL,
   `role` varchar(9) NOT NULL,
-  `disabled` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `disabled` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -75,8 +74,8 @@ CREATE TABLE `group_requests` (
   `id` bigint(20) NOT NULL,
   `groupid` bigint(20) NOT NULL,
   `userid` bigint(20) NOT NULL,
-  `disabled` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `disabled` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -87,10 +86,10 @@ CREATE TABLE `group_requests` (
 CREATE TABLE `likes` (
   `id` bigint(20) NOT NULL,
   `type` varchar(10) NOT NULL,
-  `likes` text NOT NULL,
+  `likes` mediumtext NOT NULL,
   `contentid` bigint(20) NOT NULL,
-  `following` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `following` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -103,15 +102,15 @@ CREATE TABLE `messages` (
   `msgid` varchar(60) NOT NULL,
   `sender` bigint(20) NOT NULL,
   `receiver` bigint(20) NOT NULL,
-  `message` text,
+  `message` mediumtext DEFAULT NULL,
   `file` varchar(500) DEFAULT NULL,
-  `received` tinyint(1) NOT NULL DEFAULT '0',
-  `seen` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_sender` tinyint(1) NOT NULL DEFAULT '0',
-  `deleted_receiver` tinyint(1) NOT NULL DEFAULT '0',
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `received` tinyint(1) NOT NULL DEFAULT 0,
+  `seen` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted_sender` tinyint(1) NOT NULL DEFAULT 0,
+  `deleted_receiver` tinyint(1) NOT NULL DEFAULT 0,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `tags` varchar(2048) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,7 @@ CREATE TABLE `notifications` (
   `content_owner` bigint(20) NOT NULL,
   `content_type` varchar(10) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -139,7 +138,7 @@ CREATE TABLE `notification_seen` (
   `id` bigint(20) NOT NULL,
   `userid` bigint(20) NOT NULL,
   `notification_id` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -150,19 +149,19 @@ CREATE TABLE `notification_seen` (
 CREATE TABLE `posts` (
   `id` bigint(20) NOT NULL,
   `postid` bigint(20) NOT NULL,
-  `post` text NOT NULL,
+  `post` mediumtext NOT NULL,
   `image` varchar(500) NOT NULL,
   `has_image` tinyint(1) NOT NULL,
   `is_profile_image` tinyint(1) NOT NULL,
   `is_cover_image` tinyint(1) NOT NULL,
   `parent` bigint(20) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `userid` bigint(20) NOT NULL,
   `owner` bigint(20) NOT NULL,
   `likes` int(11) NOT NULL,
   `comments` int(11) NOT NULL,
   `tags` varchar(2048) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -186,10 +185,19 @@ CREATE TABLE `users` (
   `password` varchar(64) NOT NULL,
   `url_address` varchar(100) NOT NULL,
   `likes` int(11) NOT NULL,
-  `about` text NOT NULL,
+  `about` mediumtext NOT NULL,
   `tag_name` varchar(20) NOT NULL,
   `group_type` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `userid`, `owner`, `first_name`, `last_name`, `gender`, `type`, `profile_image`, `cover_image`, `date`, `online`, `email`, `password`, `url_address`, `likes`, `about`, `tag_name`, `group_type`) VALUES
+(15, 9830912, 0, 'SYK', 'Social', 'Male', 'profile', '', '', '2026-05-19 18:41:36', 1779216103, 'admin@sykmm.site', '00797a1b7e3f501e1f7ab74df3e3fa8d9e1d2150', 'syk.social', 0, '', 'syksocial', ''),
+(16, 210792430, 0, 'Pomwovwnty', 'Xlwxgevtng', 'Option', 'profile', '', '', '2026-05-30 08:57:13', 0, 'kfhgeezi@immenseignite.info', 'ad4a8df60cef7973b67557dcd59d1c9f9df9ea21', 'pomwovwnty.xlwxgevtng', 0, '', 'pomwovwntyxlwxgevtng', ''),
+(17, 83367692971316, 0, 'Test', 'User', 'Male', 'profile', '', '', '2026-07-19 07:22:35', 0, 'testapp@sykmm.site', '9bc34549d565d9505b287de0cd20ac77be1d3f2c', 'test.user', 0, '', 'testuser', '');
 
 --
 -- Indexes for dumped tables
@@ -365,7 +373,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

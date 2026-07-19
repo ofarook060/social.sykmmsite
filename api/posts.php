@@ -12,6 +12,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/connect.php';
 require_once __DIR__ . '/../classes/post.php';
 require_once __DIR__ . '/../classes/login.php';
+require_once __DIR__ . '/../classes/user.php';
+require_once __DIR__ . '/../classes/functions.php';
 require_once __DIR__ . '/../classes/jwt.php';
 
 session_start();

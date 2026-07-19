@@ -11,6 +11,8 @@ session_start();
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../classes/connect.php';
 require_once __DIR__ . '/../../classes/messages.php';
+require_once __DIR__ . '/../../classes/user.php';
+require_once __DIR__ . '/../../classes/functions.php';
 require_once __DIR__ . '/../../classes/jwt.php';
 
 $userid = JWTAuth::require_auth();
