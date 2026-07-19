@@ -5,11 +5,22 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 class JWTAuth
 {
-    private static $secret = 'syk_social_jwt_secret_2024_change_in_production';
+    private static $secret = null;
     private static $algo = 'HS256';
     private static $expiry_days = 7;
+
+    private static function getSecret()
+    {
+        if (self::$secret === null) {
+            self::$secret = $_ENV['JWT_SECRET'];
+        }
+        return self::$secret;
+    }
 
     public static function generate_token($userid, $email)
     {
@@ -22,13 +33,13 @@ class JWTAuth
             'email' => $email,
         ];
 
-        return JWT::encode($payload, self::$secret, self::$algo);
+        return JWT::encode($payload, self::getSecret(), self::$algo);
     }
 
     public static function validate_token($token)
     {
         try {
-            $decoded = JWT::decode($token, new Key(self::$secret, self::$algo));
+            $decoded = JWT::decode($token, new Key(self::getSecret(), self::$algo));
             return (array)$decoded;
         } catch (Exception $e) {
             return false;
