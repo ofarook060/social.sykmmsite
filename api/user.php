@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
@@ -18,6 +18,7 @@ session_start();
 
 $jwt_userid = JWTAuth::get_userid_from_request();
 if ($jwt_userid) {
+    $_SESSION['mybook_userid'] = $jwt_userid;
     $user = new User();
     $user_data = $user->get_data($jwt_userid);
     if (!$user_data) {
