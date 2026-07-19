@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../classes/jwt.php';
 
 $userid = JWTAuth::require_auth();
 
-$find = $_GET['find'] ?? '';
+$find = $_GET['q'] ?? $_GET['find'] ?? '';
 if (empty($find)) {
     echo json_encode(['success' => false, 'error' => 'Search query required']);
     exit;
