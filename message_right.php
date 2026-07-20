@@ -1,8 +1,8 @@
 
-	<div id="message_right" style="background-color: #eee;">
+	<div id="message_right" style="background-color: #D4AF37;">
 
 		<div style="width: 100%; text-align: right;">
-			<div style="font-weight: bold;color: #405d9b;width: 100%;">
+			<div style="font-weight: bold;color: #032F2E;width: 100%;">
 				<?php 
 					echo "<a href='".ROOT."profile/$MESSAGE[msgid]'>";
 					echo htmlspecialchars($ROW_USER['first_name']) . " " . htmlspecialchars($ROW_USER['last_name']); 

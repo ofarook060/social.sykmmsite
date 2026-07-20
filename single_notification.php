@@ -32,9 +32,9 @@
 	$seen = $DB->read($query);
 
 	if(is_array($seen)){
-		$color = "#eee";
+		$color = "#F8F6EE";
 	}else{
-		$color = "#dfcccc";
+		$color = "#e8dcc4";
 	}
 ?>
 

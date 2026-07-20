@@ -1,5 +1,5 @@
 
-	<div id="message_left" style="background-color: #eee;">
+	<div id="message_left" style="background-color: #F8F6EE;">
 		<div>
 		
 			<?php 
@@ -20,7 +20,7 @@
 			<img src="<?php echo ROOT . $image ?>" style="width: 75px;margin-right: 4px;border-radius: 50%;">
 		</div>
 		<div style="width: 100%;">
-			<div style="font-weight: bold;color: #405d9b;width: 100%;">
+			<div style="font-weight: bold;color: #D4AF37;width: 100%;">
 				<?php 
 					echo "<a href='".ROOT."profile/$MESSAGE[msgid]'>";
 					echo htmlspecialchars($ROW_USER['first_name']) . " " . htmlspecialchars($ROW_USER['last_name']); 

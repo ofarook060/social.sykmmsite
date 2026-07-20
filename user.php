@@ -1,5 +1,5 @@
 
-<div id="friends" style="display: inline-block; width: 200px;background-color: #eee;">
+<div id="friends" style="display: inline-block; width: 200px;background-color: #F8F6EE;">
 	<?php 
 
 		$image = "images/user_male.jpg";

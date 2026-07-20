@@ -76,128 +76,11 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-		<title>Profile | Visionnaire</title>
+		<title>SYK Social | Profile</title>
+		<link rel="stylesheet" href="styles.css">
 	</head>
 
-	<style type="text/css">
-		
-		#blue_bar{
-
-			height: 50px;
-			background-color: #405d9b;
-			color: #d9dfeb;
-
-		}
-
-		#search_box{
-
-			width: 400px;
-			height: 20px;
-			border-radius: 5px;
-			border:none;
-			padding: 4px;
-			font-size: 14px;
-			background-image: url(search.png);
-			background-repeat: no-repeat;
-			background-position: right;
-
-		}
-
-		#textbox{
-
-			width: 100%;
-			height: 20px;
-			border-radius: 5px;
-			border:none;
-			padding: 4px;
-			font-size: 14px;
-			border: solid thin grey;
-			margin:10px;
- 
-		}
-
-		#profile_pic{
-
-			width: 150px;
-			margin-top: -300px;
-			border-radius: 50%;
-			border:solid 2px white;
-		}
-
-		#menu_buttons{
-
-			width: 100px;
-			display: inline-block;
-			margin:2px;
-		}
-
-		#friends_img{
-
-			width: 75px;
-			float: left;
-			margin:8px;
-
-		}
-
-		#friends_bar{
-
-			background-color: white;
-			min-height: 400px;
-			margin-top: 20px;
-			color: #aaa;
-			padding: 8px;
-		}
-
-		#friends{
-
-		 	clear: both;
-		 	font-size: 12px;
-		 	font-weight: bold;
-		 	color: #405d9b;
-		}
-
-		textarea{
-
-			width: 100%;
-			border:none;
-			font-family: tahoma;
-			font-size: 14px;
-			height: 60px;
-
-		}
-
-		#post_button{
-
-			float: right;
-			background-color: #405d9b;
-			border:none;
-			color: white;
-			padding: 4px;
-			font-size: 14px;
-			border-radius: 2px;
-			width: 50px;
-			min-width: 50px;
-			cursor: pointer;
-		}
- 
- 		#post_bar{
-
- 			margin-top: 20px;
- 			background-color: white;
- 			padding: 10px;
- 		}
-
- 		#post{
-
- 			padding: 4px;
- 			font-size: 13px;
- 			display: flex;
- 			margin-bottom: 20px;
- 		}
-
-	</style>
-
-	<body style="font-family: tahoma; background-color: #d0d8e4;">
+	<body style="font-family: tahoma;background-color: #032F2E;">
 
 		<br>
 		<?php include("header.php"); ?>
@@ -251,9 +134,9 @@
  		</div>
 
 		<!--cover area-->
-		<div style="width: 800px;margin:auto;min-height: 400px;">
+ 		<div style="width: 800px;margin:auto;min-height: 400px;">
 			
-			<div style="background-color: white;text-align: center;color: #405d9b">
+			<div style="background-color: #FFFFFF;text-align: center;color: #032F2E;border-radius:0 0 12px 12px;overflow:hidden;border:1px solid #F4D66D;border-top:none;margin-bottom:16px;">
 
 					<?php 
 
@@ -285,14 +168,14 @@
 
 					<?php if(i_own_content($user_data)):?>
 					
-						<a onclick="show_change_profile_image(event)" style="text-decoration: none;color:#f0f;" href="<?=ROOT?>change_profile_image/profile">Change Profile Image</a> | 
-						<a onclick="show_change_cover_image(event)" style="text-decoration: none;color:#f0f;" href="<?=ROOT?>change_profile_image/cover">Change Cover</a>
+						<a onclick="show_change_profile_image(event)" style="text-decoration: none;color:#D4AF37;" href="<?=ROOT?>change_profile_image/profile">Change Profile Image</a> | 
+						<a onclick="show_change_cover_image(event)" style="text-decoration: none;color:#D4AF37;" href="<?=ROOT?>change_profile_image/cover">Change Cover</a>
 					
 					<?php endif; ?>
 
 				</span>
 				<br>
-					<div style="font-size: 20px;color: black;">
+					<div style="font-size: 20px;color: #032F2E;">
 						<a href="<?=ROOT?>profile/<?php echo $user_data['userid'] ?>">
 							<?php echo $user_data['first_name'] . " " . $user_data['last_name']  ?>
 							<br><span style="font-size:12px;">@<?=$user_data['tag_name']?></span>
@@ -308,18 +191,18 @@
 						<br>
 
 						<a href="<?=ROOT?>like/user/<?php echo $user_data['userid'] ?>">
-							<input id="post_button" type="button" value="Follow <?php echo $mylikes ?>" style="margin-right:10px;background-color: #9b409a;width:auto;">
+							<input id="post_button" type="button" value="Follow <?php echo $mylikes ?>" style="margin-right:10px;background-color: #D4AF37;width:auto;">
 						</a>
 
-						<?php if($user_data['userid'] == $_SESSION['mybook_userid']): ?>
-							<a href="<?=ROOT?>messages">
-								<input id="post_button" type="button" value="Messages" style="margin-right:10px;background-color: #1b9186;width:auto;">
-							</a>
-						<?php else: ?>
-							<a href="<?=ROOT?>messages/new/<?=$user_data['userid']?>">
-								<input id="post_button" type="button" value="Message" style="margin-right:10px;background-color: #1b9186;width:auto;">
-							</a>
-						<?php endif; ?>
+					<?php if($user_data['userid'] == $_SESSION['mybook_userid']): ?>
+						<a href="<?=ROOT?>messages">
+							<input id="post_button" type="button" value="Messages" style="margin-right:10px;background-color: #0C4440;width:auto;">
+						</a>
+					<?php else: ?>
+						<a href="<?=ROOT?>messages/new/<?=$user_data['userid']?>">
+							<input id="post_button" type="button" value="Message" style="margin-right:10px;background-color: #0C4440;width:auto;">
+						</a>
+					<?php endif; ?>
  						
 
 					</div>

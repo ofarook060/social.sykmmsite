@@ -1,5 +1,5 @@
 
-<div id="friends" style="display: inline-block; width: 200px;background-color: #eee;">
+<div id="friends" style="display: inline-block; width: 200px;background-color: #F8F6EE;">
 	<?php 
 
 		$image = $image_class->get_thumb_profile("images/cover_image.jpg");
