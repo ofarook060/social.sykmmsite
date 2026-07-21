@@ -88,16 +88,18 @@ if(isset($URL[1]) && ($URL[1] == "profile" || $URL[1] == "cover"))
 						$DB->save($query);
 
 
-						//create a post
-						$post = new Post();
+					//create a post
+					$post = new Post();
 
-						if(isset($group_data)){
-							$post->create_post($userid, $_POST,$filename,$group_data['userid']);
-							header(("Location: ".ROOT."group/". $group_data['userid']));
-						}else{
-							$post->create_post($userid, $_POST,$filename);
-							header(("Location: ".ROOT."profile"));
-						}
+					if(isset($group_data)){
+						$_POST['is_cover_image'] = 1;
+						$post->create_post($userid, $_POST,$_FILES,$group_data['userid']);
+						header(("Location: ".ROOT."group/". $group_data['userid']));
+					}else{
+						$_POST['is_profile_image'] = 1;
+						$post->create_post($userid, $_POST,$_FILES);
+						header(("Location: ".ROOT."profile"));
+					}
 						
 						die;
 					}

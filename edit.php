@@ -90,12 +90,12 @@
 								 		echo $ERROR;
 								 	}else{
 
-	  									echo "Edit Post<br><br>";
- 										
- 										echo '<textarea name="post" placeholder="Whats on your mind?">'.$ROW['post'].'</textarea>
+	 									echo "Edit Post<br><br>";
+										
+	 									echo '<textarea name="post" placeholder="Whats on your mind?">' . htmlspecialchars($ROW['post']) . '</textarea>
 	 											<input type="file" name="file">';
 
-	  									echo "<input type='hidden' name='postid' value='$ROW[postid]'>";
+	  									echo "<input type='hidden' name='postid' value='" . htmlspecialchars($ROW['postid']) . "'>";
 	 									echo "<input id='post_button' type='submit' value='Save'>";
 
 	 									if(file_exists($ROW['image']))

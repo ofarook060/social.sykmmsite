@@ -4,7 +4,8 @@
 
 	$login = new Login();
 	$user_data = $login->check_login($_SESSION['mybook_userid']);
-	
+
+	$results = false;
 	if(isset($_GET['find'])){
 
 		$find = addslashes($_GET['find']);

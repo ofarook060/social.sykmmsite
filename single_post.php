@@ -50,7 +50,7 @@
 	if(isset($URL[1])){
 
 		$ROW = $Post->get_one_post($URL[1]);
-		if($ROW['owner'] > 0){
+		if(is_array($ROW) && $ROW['owner'] > 0){
 
 			$user_class = new User();
 			$group_data = $user_class->get_user($ROW['owner']);

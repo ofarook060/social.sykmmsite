@@ -90,7 +90,12 @@
 						//create a post
 						$post = new Post();
 
-						$post->create_post($userid, $_POST,$filename);
+						if($change == "cover"){
+							$_POST['is_cover_image'] = 1;
+						}else{
+							$_POST['is_profile_image'] = 1;
+						}
+						$post->create_post($userid, $_POST,$_FILES);
 
 						header(("Location: profile.php"));
 						die;

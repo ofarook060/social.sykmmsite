@@ -2,8 +2,8 @@
 
 $URL = split_url_from_string($data->link);
 
-$_GET['type'] = isset($URL[5]) ? $URL[5] : null;
-$_GET['id'] = isset($URL[6]) ? $URL[6] : null;
+$_GET['type'] = isset($URL[3]) ? $URL[3] : null;
+$_GET['id'] = isset($URL[4]) ? $URL[4] : null;
 
 
 $_SESSION['mybook_userid'] = isset($_SESSION['mybook_userid']) ? $_SESSION['mybook_userid'] : 0;

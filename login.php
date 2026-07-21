@@ -4,6 +4,12 @@ session_start();
 
 	include("classes/connect.php");
 	include("classes/login.php");
+
+	if(!defined("ROOT")){
+		$root = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+		$root = trim(str_replace("login.php", "", $root),"/");
+		define("ROOT", $root . "/");
+	}
  
 	$email = "";
 	$password = "";

@@ -3,6 +3,12 @@
 	include("classes/connect.php");
 	include("classes/signup.php");
 
+	if(!defined("ROOT")){
+		$root = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+		$root = trim(str_replace("signup.php", "", $root),"/");
+		define("ROOT", $root . "/");
+	}
+
 	$first_name = "";
 	$last_name = "";
 	$gender = "";

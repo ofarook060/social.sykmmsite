@@ -33,14 +33,22 @@ Class Settings
 
 		unset($data['password2']);
 
-		$sql = "update users set ";
-		foreach ($data as $key => $value) {
-			# code...
+		$allowed_keys = ['first_name','last_name','gender','email','about','tag_name','password','url_address'];
 
-			$sql .= $key . "='" . $value. "',";
+		$sql = "update users set ";
+		$set_parts = [];
+		foreach ($data as $key => $value) {
+
+			if(in_array($key, $allowed_keys)){
+				$set_parts[] = $key . "='" . addslashes($value) . "'";
+			}
 		}
 
-		$sql = trim($sql,",");
+		if(empty($set_parts)){
+			return;
+		}
+
+		$sql .= implode(",", $set_parts);
 		$sql .= " where userid = '$id' limit 1";
 		$DB->save($sql);
 	}

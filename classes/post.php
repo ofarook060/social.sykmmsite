@@ -133,10 +133,14 @@ class Post
 			$has_image = 0;
 
  				if(!empty($files['file']['name']))
-				{
+			{
 
 
-					$folder = "uploads/" . $userid . "/";
+				$postid_for_folder = addslashes($data['postid']);
+				$DB_folder = new Database();
+				$existing = $DB_folder->read("select userid from posts where postid = '$postid_for_folder' limit 1");
+				$folder_userid = is_array($existing) ? $existing[0]['userid'] : $_SESSION['mybook_userid'];
+				$folder = "uploads/" . $folder_userid . "/";
 
 						//create folder
 						if(!file_exists($folder))
