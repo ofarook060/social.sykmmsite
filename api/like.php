@@ -1,4 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/../php_error.log');
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -39,12 +44,17 @@ if ($jwt_userid) {
 $post = new Post();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $content_id = $data['content_id'] ?? 0;
-    $type = $data['type'] ?? 'post';
-    
-    $post->like_post($content_id, $type, $user_data['userid']);
-    $likes = $post->get_likes($content_id, $type);
-    
-    echo json_encode(['success' => true, 'likes' => $likes]);
+    try {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $content_id = $data['content_id'] ?? 0;
+        $type = $data['type'] ?? 'post';
+        
+        $post->like_post($content_id, $type, $user_data['userid']);
+        $likes = $post->get_likes($content_id, $type);
+        
+        echo json_encode(['success' => true, 'likes' => $likes]);
+    } catch (\Throwable $e) {
+        error_log("like.php error: " . $e->getMessage() . " in " . $e->getFile() . ":" . $e->getLine());
+        echo json_encode(['success' => false, 'error' => 'Internal server error']);
+    }
 }

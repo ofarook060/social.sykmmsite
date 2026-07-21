@@ -14,6 +14,7 @@ class Database
 	private $db = "";
 
     function __construct() {
+        mysqli_report(MYSQLI_REPORT_OFF);
         $this->host = $_ENV['DB_HOST'];
         $this->username = $_ENV['DB_USER'];
         $this->password = $_ENV['DB_PASS'];
