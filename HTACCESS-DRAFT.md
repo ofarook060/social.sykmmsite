@@ -1,10 +1,14 @@
 RewriteEngine On
 
-# If the request is not for an existing file or directory
+# If the request is not for an existing file or directory, try adding .php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
 
-# Route everything through index.php
+# If still not an existing file, route through index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 
 # Disable directory listing
