@@ -67,7 +67,7 @@ class User
 			//get following details
 			$sql = "select following from likes where type='$type' && contentid = '$id' limit 1";
 			$result = $DB->read($sql);
-			if(is_array($result)){
+			if(is_array($result) && !empty($result)){
 
 				$following = json_decode($result[0]['following'],true);
 				return $following;

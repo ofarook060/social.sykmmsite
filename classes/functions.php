@@ -10,7 +10,7 @@ function pagination_link(){
 
 	//get current url
 	//$url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'];
-	$url = (ROOT . $_GET['url']) ?? 'www.google.com';
+	$url = (ROOT . ($_GET['url'] ?? '')) ?: 'www.google.com';
 	$url .= "?";
 
 	$next_page_link = $url;

@@ -4,7 +4,7 @@
  
 
 	$login = new Login();
-	$user_data = $login->check_login($_SESSION['mybook_userid']);
+	$user_data = $login->check_login($_SESSION['mybook_userid'] ?? 0);
  
  	$USER = $user_data;
  	
